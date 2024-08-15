@@ -86,13 +86,13 @@ float triple_a = 0;
 bool waitForBalancedPos = false;
 
 void loop() {
-  // should be executed as often as possible. makes sure the motor is geing operated as smooth as possible using FOC
+  // should be executed as often as possible. makes sure the motor is getting operated as smooth as possible using FOC
   bldcmotor.loopFOC();
 
   // 
   bldcmotor.move();
 
-  // check if everything was initialised correctly
+  // check if everything in the setup function was initialised correctly
   if (!cube_init_good) // init failled => do nothing
   { 
     bldcmotor.target = 0;
@@ -159,7 +159,7 @@ float calculateMotorControlleValue(float cube_angle, float cube_angle_velocity, 
   int maxVoltage = 17;
   
   // calculate the motor voltage needed to stabilize the pendulum
-  // 20, 6, 0.1 and 1.8 are the parameters that can be used to tune the LQR
+  // 20, 6, 0.1 and 1.8 are the manual parameters that can be used to tune the LQR
   float motorVal = (20*cube_angle + 6*cube_angle_velocity + 0.1*motor_speed)*1.8;
 
   // constraint motor voltage to maxVoltage
